@@ -1,9 +1,9 @@
-<?php include 'rssFetchXML.php'; ?>
+<?php include 'rssFetchXml.php'; ?>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <title>rssFetchXML Demo</title>
+        <title>rssFetchXml Demo</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -29,7 +29,7 @@
         <main>
         <!-- Begin main content -->
         <?php
-            $new = new rssFetchXML;
+            $new = new rssFetchXml("path/to/cache/",48000);
             echo rss_feed( 'https://sports.yahoo.com/rss', $new );
             echo rss_feed( 'https://www.stereogum.com/feed/', $new );
             echo rss_feed( 'https://www.panthers.com/rss/news', $new );
@@ -41,7 +41,7 @@
         </main>
         <footer>
         <!-- Begin footer content -->
-            <h4>rssXmlFetch &copy 2025</h4>
+            <h4>rssFetchXml &copy 2026</h4>
         <!-- End footer content -->
         </footer>
     </body>
@@ -50,10 +50,7 @@
 <?php
 
 function rss_feed( $url, $new ) {
-    $new->rss_xml_cache = 'cache';
-    $new->rss_xml_expire = 3600;
-
-    $rss = @$new->rss_xml_fetch($url);
+    $rss = $new->rssXmlFetch($url);
     $output = '';
 
     if (is_object($rss)) {
