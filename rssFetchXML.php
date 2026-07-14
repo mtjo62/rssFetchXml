@@ -107,10 +107,11 @@ class RssFetchXml
      * @return mixed
      */
     private function rssXmlCurl(string $rss_url, string $cache_file) {
+        $user_agent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36";
         $curl = curl_init($rss_url);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.3");
+        curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_ENCODING, "utf-8");
         $curl_result = curl_exec($curl);
@@ -137,7 +138,8 @@ class RssFetchXml
      * @return mixed
      */
     private function rssXmlStream(string $rss_url, string $cache_file) {
-        $stream_context = stream_context_create( ["http" => ["user_agent" => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36"]]);
+        $user_agent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36";
+        $stream_context = stream_context_create( ["http" => ["user_agent" => $user_agent]]);
         $stream_response = file_get_contents($rss_url, false, $stream_context);
         $stream_str_obj = simplexml_load_string((string)$stream_response, "SimpleXMLElement", LIBXML_NOWARNING | LIBXML_NOERROR);  
       
