@@ -1,7 +1,7 @@
 <?php
 
 //Path to cache dir
-$rss_cache = "path\to\cache\\";
+$rss_cache = "path/to/cache/";
 //Cache expire in secs - ie: 3600 = 1 hr
 $rss_expire = 3600;
 //Custom error message on feed failure
