@@ -8,7 +8,7 @@
  * @license MIT
  */
  
-let rssUrl = "bin/rss/rssFetchXml_new.php";
+let rssUrl = "https://somesite.com/rss/rssFetchXml_new.php";
 
 window.addEventListener("load", rssFetch(), false);
 
