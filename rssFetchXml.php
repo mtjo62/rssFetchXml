@@ -4,7 +4,7 @@
  * RSS aggregator utilizing libxml and cURL
  *
  * @package RssFetchXml
- * @version 1.2
+ * @version 1.3
  * @author MT Jordan <mtjo62@gmail.com>
  * @copyright 2026
  * @license MIT
@@ -25,6 +25,16 @@ class RssFetchXml
      * @var int
      */
     private int $xml_cache_expire;
+    
+    /**
+     * @var string
+     */
+    private string $xml_rss_error;
+    
+    /**
+     * @var int
+     */
+    private int $xml_rss_max;
 
     /**********************************************
      * Public methods
@@ -32,14 +42,55 @@ class RssFetchXml
 
     /**
      * Constructor
-     *
-     * @param string $cache_dir
-     * @param int $expire_time
      */
-    public function __construct(string $cache_dir="./", int $expire_time=3600) {
-        $this->xml_cache_dir = $cache_dir;
-        $this->xml_cache_expire = $expire_time;
+    public function __construct() {  
+        require_once "rss_config.php";
+        $this->xml_cache_dir = $rss_cache;
+        $this->xml_cache_expire = $rss_expire;
+        $this->xml_rss_error = $rss_error;
+        $this->xml_rss_max = $max_links;
     }
+    
+    /**
+     * Return RSS feed HTML
+     *
+     * @param string $rss_url
+     * @return string
+     */ 
+    public function rssXmlReturn(string $rss_url) {
+        $rss_xml = $this->rssXmlFetch($rss_url);
+        $rss_output = "";
+        $rss_count = 0;
+  
+        if ($rss_xml !== false) {
+            if (empty($rss_xml->channel->title)) {
+                $rss_xml->channel->title = $rss_xml->channel->link;
+            }
+            
+            $rss_output .= "<div class=\"rss-header\"><a href=\"" . $rss_xml->channel->link . "\" target=\"_blank\">" . $rss_xml->channel->title . "</a></div>";
+            $rss_output .= "<div class=\"rss-wrapper\">";
+
+            foreach ($rss_xml->channel->item as $item) {
+                if ($rss_count === $this->xml_rss_max) {
+                    break;
+                }
+
+                $rss_count++;
+                $rss_output .= "<div class=\"rss-link\"><a href=\"" . $item->link . "\" target=\"_blank\">" . $item->title . "</a></div>";
+            }
+
+            $rss_output .= "</div>";
+
+        } else {
+            $rss_output .= $this->xml_rss_error;
+        }
+
+        return $rss_output;
+    }
+
+    /**********************************************
+     * Private methods
+     *********************************************/
 
     /**
      * Set RSS URL and cache file name
@@ -49,7 +100,7 @@ class RssFetchXml
      * @param string $rss_url
      * @return mixed
      */
-    public function rssXmlFetch(string $rss_url) {
+    private function rssXmlFetch(string $rss_url) {
         $xml_cache_file = $this->xml_cache_dir . str_replace(" ", "", preg_replace("/[^A-Za-z0-9 ]/", "", $rss_url) . ".xml");
         $xml_cache_obj = $this->rssXmlCache($xml_cache_file);
 
@@ -65,11 +116,7 @@ class RssFetchXml
 
         return false;
      }
-
-    /**********************************************
-     * Private methods
-     *********************************************/
-
+     
     /**
      * Return unexpired XML cache object
      *
@@ -150,5 +197,9 @@ class RssFetchXml
         return false;
     }
 }
+
+$rss = new RssFetchXml;
+echo json_encode($rss->rssXmlReturn($_GET["file"]));
+
 /* EOF rssFetchXml.php */
 /* Location: ./rssFetchXml.php */
