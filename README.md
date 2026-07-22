@@ -118,7 +118,7 @@
 2. This will return a HTML formatted block with the following structure:
    ```html
    <div class="rss-feed" data-rss="https://somesite.com/rss/feeds/feed.xml">
-    <div class="rss-header">Channel Title</div>
+    <div class="rss-header"><a href="https://somesite.com/" target="_blank">Channel Title</a></div>
     <div class="rss-wrapper">
       <div class="rss-link"><a href="https://somesite.com/item.html" target="_blank">Item 1 Title</a></div>
       <div class="rss-link"><a href="https://somesite.com/item2.html" target="_blank">Item 2 Title</a></div>
@@ -134,9 +134,13 @@
     border: .063rem solid #aaa;
    }
    .rss-header {
+    padding: .5rem;
+   }
+   .rss-header a {
     font-weight: bold;
     padding: .5rem;
     color: #000;
+    text-decoration: none;
    }
    .rss-wrapper {
     height: 10rem;
