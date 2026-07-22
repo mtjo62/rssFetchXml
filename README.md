@@ -44,7 +44,7 @@
 
 <b>rssFetchXml Features:</b>
 
-* Avoid using commercial RSS feed APIs that may require a subscription and fees
+* Avoids using commercial RSS feed APIs that may require a subscription and fees
 
 * Compact code that simplifies adding an RSS feed to a webpage utilizing
   PHP's simplexml, cURL and Javascript.
