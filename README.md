@@ -54,7 +54,7 @@
 * Using simplexml with cURL sends "friendly" RSS requests that CDNs such
   as Cloudflare may treat as bots with other methods.
 
-* Auto creates cached XML files. 
+* Auto saves cached XML files. 
 
 * Cache dir, cache expiration time, max number of feed links and custom error
   message set in config file.
