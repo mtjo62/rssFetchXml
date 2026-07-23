@@ -51,7 +51,7 @@
 
 * Does not require allow_url_fopen enabled.
   
-* Using simplexml with cURL sends "friendly" RSS requests that networks such
+* Using simplexml with cURL sends "friendly" RSS requests that CDNs such
   as Cloudflare may treat as bots with other methods.
 
 * Auto creates cached XML files. 
