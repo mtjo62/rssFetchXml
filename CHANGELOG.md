@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.3
+## v1.3.0
 
 ### Added or Changed
 - Refactored complete build structure
@@ -8,20 +8,20 @@
 - Can now be run in any template that returns HTML
 
 
-## v1.2
+## v1.2.0
 
 ### Added or Changed
 - Refactored PHP code to current standards
 - Updated or removed deprecated functions
 
 
-## v1.1
+## v1.0.1
 
 ### Added or Changed
 - Updated cURL to fix errors
 
 
-## v1.0
+## v1.0.0
 
 ### Added or Changed
 - Initial project release
