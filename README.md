@@ -6,7 +6,7 @@
 <h3 align="center">rssFetchXml</h3>
 
   <p align="center">
-    rssFetchXml is an RSS reader that uses PHP, Javascript and HTML to display XML feeds
+    rssFetchXml is an RSS and Atom reader that uses PHP, Javascript and HTML to display XML feeds
     <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
   </p>
@@ -86,14 +86,12 @@
 1. Upload rssFetchXml.php, rss_config.php and rss_fetch.js to a directory on your server. rssFetchXml.php and rss_config.php must be in the same directory.
 2. Open `rss_config.php` and edit the following variables
    ```php
-   // Path to cache dir
-   $rss_cache = "path/to/cache/";
-   // Cache expire in secs - ie: 3600 = 1 hr
-   $rss_expire = 3600;
-   // Custom error message on feed failure
-   $rss_error = "RSS fetch failed - RSS url or feed may be unavailable";
-   // Max # of links to display
-   $max_links = 12;
+   return [
+    "cache_dir" => "C:\\xampp\htdocs\www\bin\\rss\cache\\", //Path to cache dir
+    "cache_expire" => 3600, //Cache expire in secs - ie: 3600 = 1 hr
+    "rss_error" => "RSS fetch failed - RSS Url or feed may be unavailable", //Custom error message on feed failure
+    "rss_max" => 12 //Max number of links displayed
+];
    ```
 3. Open `rss_fetch.js` and edit the following variable
    ```js
