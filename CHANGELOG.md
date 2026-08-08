@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.1
+
+### Added or Changed
+- Added support for Atom feeds
+- Hardened data typing
+- Added functions to help prevent XSS attacks
+- Config file converted to key-value pair array
+
+
 ## v1.3.0
 
 ### Added or Changed
