@@ -87,7 +87,7 @@
 2. Open `rss_config.php` and edit the following variables
    ```php
    return [
-    "cache_dir" => "C:\\xampp\htdocs\www\bin\\rss\cache\\", //Path to cache dir
+    "cache_dir" => "path/to/cache/", //Path to cache dir
     "cache_expire" => 3600, //Cache expire in secs - ie: 3600 = 1 hr
     "rss_error" => "RSS fetch failed - RSS Url or feed may be unavailable", //Custom error message on feed failure
     "rss_max" => 12 //Max number of links displayed
