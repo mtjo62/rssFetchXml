@@ -2,7 +2,7 @@
  * RSS Javascript Function
  *
  * @package RssFetchXml
- * @version 1.3
+ * @version 1.3.1
  * @author MT Jordan <mtjo62@gmail.com>
  * @copyright 2026
  * @license MIT
